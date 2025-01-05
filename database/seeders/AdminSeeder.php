@@ -22,6 +22,7 @@ class AdminSeeder extends Seeder
             'username' => 'admin',
             'role' => Enum::ADMIN,
             'password' => Hash::make('123456'),
+            'verified_by_admin' => true
         ]);
 
     }

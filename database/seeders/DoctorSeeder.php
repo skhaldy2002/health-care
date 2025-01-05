@@ -20,9 +20,28 @@ class DoctorSeeder extends Seeder
             'name' => 'doctor',
             'email' => 'doctor@gmail.com',
             'username' => 'doctor',
+            'specialty_id' => 1,
             'role' => Enum::DOCTOR,
             'password' => Hash::make('123456'),
         ]);
+
+        $specialties = [
+            'Cardiology',       // أمراض القلب
+            'Dermatology',      // الأمراض الجلدية
+            'Neurology',        // طب الأعصاب
+            'Pediatrics',       // طب الأطفال
+            'Orthopedics',      // جراحة العظام
+            'Psychiatry',       // الطب النفسي
+            'Ophthalmology',    // طب العيون
+            'Gynecology',       // طب النساء والتوليد
+            'Radiology',        // الأشعة
+            'General Surgery',  // الجراحة العامة
+        ];
+        foreach ($specialties as $specialty) {
+            \App\Models\Specialty::query()->create([
+                'name' => $specialty
+            ]);
+        }
 
     }
 }

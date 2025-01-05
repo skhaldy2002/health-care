@@ -32,6 +32,7 @@ class User extends Authenticatable
         'phone',
         'doctor_specialty',
         'verified_by_admin',
+        'address',
     ];
 
     protected $fillable = self::FILLABLE;

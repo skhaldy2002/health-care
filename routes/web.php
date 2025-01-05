@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Appointment\AdminAppointmentController;
 use App\Http\Controllers\Admin\Dashboard\IndexController as IndexAdminController;
 use App\Http\Controllers\Admin\Doctor\AdminDoctorController;
 use App\Http\Controllers\Admin\Patient\AdminPatientController;
+use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Doctor\Dashboard\DoctorAppointmentController;
 use App\Http\Controllers\Doctor\Dashboard\IndexController as DoctorController;
 use App\Http\Controllers\Patient\Dashboard\IndexController as PatientController;
@@ -31,9 +32,15 @@ Route::get('/', function (){
 Route::group(['prefix' => 'auth', 'middleware' => 'guest'], function () {
     Route::get('login', [LoginController::class, 'index'])->name('login');
     Route::post('custom-login', [LoginController::class, 'login'])->name('custom-login');
+    Route::get('patient_or_doctor_signup', [RegistrationController::class, 'patientOrDoctorSignup'])->name('patient_or_doctor_signup');
+    Route::get('patient-signup/create', [RegistrationController::class, 'patientSignupView'])->name('patient_signup.create');
+    Route::post('patient-signup/store', [RegistrationController::class, 'patientSignup'])->name('patient_signup.store');
+
+    Route::get('doctor-signup/create', [RegistrationController::class, 'doctorSignupView'])->name('doctor_signup.create');
+    Route::post('doctor-signup/store', [RegistrationController::class, 'doctorSignup'])->name('doctor_signup.store');
+
 });
-// Admin Routes
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','verify'])->group(function () {
 
     Route::group(['prefix' => 'auth'], function () {
         Route::get('logout', [LoginController::class, 'logout'])->name('logout');

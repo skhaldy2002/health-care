@@ -22,11 +22,12 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->foreignId('specialty_id')->nullable();
             $table->string('photo')->default('blank.png');
             $table->tinyInteger('role')->default(Enum::ADMIN); // admin
             $table->boolean('is_deleted')->default(false);
             $table->boolean('verified_by_admin')->default(false);
-            $table->string('doctor_specialty')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
