@@ -24,6 +24,7 @@ class AdminSeeder extends Seeder
             'password' => Hash::make('123456'),
             'verified_by_admin' => true
         ]);
+        //شسي
 
     }
 }
